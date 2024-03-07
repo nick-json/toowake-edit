@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Required</title>
+
+    <style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: black;
+        color: white;
+    }
+    
+    #main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+        color: white;
+    }
+    
+    h1 {
+        font-size: 5em;
+    }
+    
+    a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #5900ff;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        border-radius: 5px;
+        transition: 0.5s;
+    }
+    
+    a:hover {
+        background-color: #34048f;
+        transition: 0.5s;
+    }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>401</h1>
+        <p>Authenticatio required!</p>
+        <a href="/">Go Home</a>
+        <p id="redirect-message"></p>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var seconds = 10; // Number of seconds before redirect
+        var countdown = document.getElementById('redirect-message');
+    
+        countdown.innerText = 'You will be redirected to the homepage in ' + seconds + ' seconds.';
+    
+        var interval = setInterval(function() {
+            seconds--;
+            countdown.innerText = 'You will be redirected to the homepage in ' + seconds + ' seconds.';
+            if (seconds <= 0) {
+                clearInterval(interval);
+                window.location.href = '/';
+            }
+        }, 1000);
+    });
+    </script>
+</body>
+</html>
